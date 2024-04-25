@@ -1,6 +1,6 @@
 ﻿using Texnomart.Domain.Entities;
 
-namespace Texnomart.Aplication.DTOs;
+namespace Texnomart.Aplication.DTOs.UserDTOs;
 
 public class UserDto : AddUserDto
 {
@@ -20,4 +20,4 @@ public class UserDto : AddUserDto
             Gender = user.Gender
         };
     }
-    }
+}

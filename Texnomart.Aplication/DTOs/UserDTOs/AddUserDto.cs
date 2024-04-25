@@ -1,7 +1,7 @@
 ﻿using Texnomart.Domain.Entities;
 using Texnomart.Domain.Enums;
 
-namespace Texnomart.Aplication.DTOs;
+namespace Texnomart.Aplication.DTOs.UserDTOs;
 
 public class AddUserDto
 {
