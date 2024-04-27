@@ -32,12 +32,12 @@ public class PtoductsController(IProductService productService
     public async Task<IActionResult> GetAllAsync()
         => Ok(await _productService.GetAllAsync());
 
-    [HttpGet]
+    [HttpGet("{id}")]
     [Authorize(Roles = "Admin, SupperAdmin")]
     public async Task<IActionResult> GetByIdAsync(int id)
         => Ok(await _productService.GetByIdAsync(id));
 
-    [HttpGet]
+    [HttpGet("{name}")]
     [Authorize(Roles = "Admin, SupperAdmin")]
     public async Task<IActionResult> GetNameAsync(string name)
         => Ok(await _productService.GetByNameAsync(name));
