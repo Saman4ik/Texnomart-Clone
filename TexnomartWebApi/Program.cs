@@ -1,7 +1,15 @@
+using Serilog;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using Texnomart.Aplication.Interfaces;
+using Texnomart.Aplication.Services;
 using Texnomart.Data.DbContextt;
 using Texnomart.Data.Interfaces;
 using Texnomart.Data.Repositories;
+using Texnomart.Domain.Entities;
+using MovieNTV.Configurations;
+using Texnomart.Aplication.Common.Validators;
+using MovieNTV.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +20,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Cache
+builder.Services.AddMemoryCache();
+
+// Serilog
+builder.Host.UseSerilog((hostingContext, loggerConfiguration) =>
+loggerConfiguration.ReadFrom.Configuration(hostingContext.Configuration));
+
 // Db Context
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
@@ -21,6 +36,22 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 // Unit Of Work
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
+
+// Service
+builder.Services.AddTransient<IAccauntService, AccountService>();
+builder.Services.AddTransient<IAuthMenager, AuthManager>();
+builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IEmailService, EmailService>();
+builder.Services.AddTransient<IAdminService, AdminService>();
+
+// Configure
+builder.Services.ConfigureJwtAuthorize(builder.Configuration);
+builder.Services.ConfigureSwaggerAuthorize(builder.Configuration);
+
+//Validator
+builder.Services.AddScoped<IValidator<User>, UserValidator>();
+builder.Services.AddScoped<IValidator<Product>, ProductValidator>();
+builder.Services.AddScoped<IValidator<Category>, CategoryValidator>();
 
 var app = builder.Build();
 
@@ -36,5 +67,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseMiddleware<ExceptionHandleMiddleware>();
 
 app.Run();

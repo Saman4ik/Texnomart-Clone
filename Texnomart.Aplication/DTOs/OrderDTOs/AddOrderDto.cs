@@ -2,14 +2,14 @@
 
 namespace Texnomart.Aplication.DTOs.OrderDTOs;
 
-public class AddOrderDos
+public class AddOrderDto
 {
     public DateTime Date { get; set; }
     public double TotalPrice { get; set; }
     public int UserId { get; set; }
     public int ProductId { get; set; }
 
-    public static implicit  operator Order(AddOrderDos dto)
+    public static implicit  operator Order(AddOrderDto dto)
     {
         return new Order
         {

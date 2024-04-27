@@ -12,8 +12,8 @@ using Texnomart.Data.DbContextt;
 namespace Texnomart.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240424180953_biiir")]
-    partial class biiir
+    [Migration("20240426081717_birr")]
+    partial class birr
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -140,6 +140,20 @@ namespace Texnomart.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Address = "Fergana",
+                            Email = "tillayev0703@gmail.com",
+                            FrisName = "Saman4ik",
+                            Gender = 1,
+                            IsVerified = false,
+                            LastName = "Tillayev",
+                            Password = "4c5b397b90d90be1ce89eca4bc21bff9baa09c356609e079d5c1d8a50227a0a2",
+                            Role = 0
+                        });
                 });
 
             modelBuilder.Entity("Texnomart.Domain.Entities.Order", b =>

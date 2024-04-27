@@ -1,6 +1,6 @@
 ﻿namespace Texnomart.Data.Interfaces;
 
-public class IUnitOfWork
+public interface IUnitOfWork
 {
     IUserRepositorie User { get; }
     IOrderRepository Order { get; }

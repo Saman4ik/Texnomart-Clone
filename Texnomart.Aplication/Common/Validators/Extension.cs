@@ -1,5 +1,6 @@
 ﻿using FluentValidation.Results;
 using System.Text;
+using Texnomart.Aplication.Common.Exceptions;
 
 namespace Texnomart.Aplication.Common.Validators;
 

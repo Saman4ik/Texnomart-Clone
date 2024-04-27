@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Texnomart.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class biiir : Migration
+    public partial class birr : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -93,6 +93,11 @@ namespace Texnomart.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "Address", "Email", "FrisName", "Gender", "IsVerified", "LastName", "Password", "Role" },
+                values: new object[] { 1, "Fergana", "tillayev0703@gmail.com", "Saman4ik", 1, false, "Tillayev", "4c5b397b90d90be1ce89eca4bc21bff9baa09c356609e079d5c1d8a50227a0a2", 0 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_ProductId",

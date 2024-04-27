@@ -2,7 +2,7 @@
 
 namespace Texnomart.Aplication.DTOs.OrderDTOs;
 
-public class OrderDto : AddOrderDos
+public class OrderDto : AddOrderDto
 {
     public int Id { get; set; }
 
