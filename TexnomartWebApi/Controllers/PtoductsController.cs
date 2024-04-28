@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Texnomart.Aplication.DTOs.ProductDto;
 using Texnomart.Aplication.Interfaces;
+using Texnomart.Domain.Enums;
 
 namespace TexnomartWebApi.Controllers;
 
@@ -25,6 +26,14 @@ public class PtoductsController(IProductService productService
     {
         await _productService.CreateAsync(dto);
         return Ok(dto);
+    }
+
+    [HttpDelete]
+    [Authorize(Roles = "Admin, SupperAdmin")]
+    public async Task<IActionResult> DeleteAsync(int id)
+    {
+        await _productService.DeleteAsync(id);
+        return Ok();
     }
 
     [HttpGet]
